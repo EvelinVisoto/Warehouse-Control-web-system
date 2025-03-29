@@ -6,6 +6,8 @@ The Warehouse Management WEB System was developed to optimize material control i
 
 This system is part of a larger project, with multiple interconnected components that share the same database. The modules complement each other, ensuring continuous data flow and efficient management.
 
+⚠ **Important:** Before running the project, extract the node_modules.zip file. This step is necessary for the system to work.
+
 ### Features  
 
 - Recording of material entries and exits;  
