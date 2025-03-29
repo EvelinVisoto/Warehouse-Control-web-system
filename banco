@@ -1,0 +1,321 @@
+CREATE DATABASE almoxarifado;
+USE almoxarifado;
+
+CREATE TABLE tipoMovimentacao (
+    idTipoMovimentacao INT PRIMARY KEY,
+    tipoEntrada INT,
+    descricao VARCHAR(45)
+);
+
+CREATE TABLE professor (
+    registro INT PRIMARY KEY,
+    nome VARCHAR(255),
+    telefone BIGINT,
+    tipoUsuario VARCHAR(1),
+    senha VARCHAR(255),
+    email VARCHAR(255)
+);
+
+CREATE TABLE movimentacao (
+    idMovimentacao INT PRIMARY KEY,
+    data DATE,
+    hora TIME,
+    observacao_mov VARCHAR(255),
+    tipoMovimentacao_idTipoMovimentacao INT,
+    professor_registro INT,
+    professor_logado INT,
+    FOREIGN KEY (tipoMovimentacao_idTipoMovimentacao) REFERENCES tipoMovimentacao(idTipoMovimentacao),
+    FOREIGN KEY (professor_registro) REFERENCES professor(registro)
+);
+
+CREATE TABLE materiais (
+    codigo_mat INT PRIMARY KEY,
+    tipo VARCHAR(1),
+    numeroBp INT,
+    descricao VARCHAR(255),
+    observacao VARCHAR(255)
+);
+
+CREATE TABLE movimentacao_has_materiais (
+    qtd INT,
+    materiais_codigo_mat INT,
+    movimentacao_idMovimentacao INT,
+    PRIMARY KEY (materiais_codigo_mat, movimentacao_idMovimentacao),
+    FOREIGN KEY (materiais_codigo_mat) REFERENCES materiais(codigo_mat),
+    FOREIGN KEY (movimentacao_idMovimentacao) REFERENCES movimentacao(idMovimentacao)
+);
+
+CREATE TABLE posicao_estoque (
+    quantidadeMinima INT,
+    quantidadeAtual INT,
+    quantidadeMaxima INT,
+    materiais_codigo_mat INT,
+    PRIMARY KEY (materiais_codigo_mat),
+    FOREIGN KEY (materiais_codigo_mat) REFERENCES materiais(codigo_mat)
+);
+
+INSERT INTO professor (registro, nome, telefone, tipoUsuario, senha) 
+VALUES (50220187, 'Bruno', 1234567890, 'P', 'senha12');
+
+INSERT INTO movimentacao (idMovimentacao, data, hora, observacao_mov, tipoMovimentacao_idTipoMovimentacao, professor_registro) 
+VALUES (1, '2024-06-14', '10:00:00', 'Empréstimo para projeto X', 80, 502251994);
+
+select md5("coragem");
+
+select * from professor;
+select * from materiais;
+select * from tipomovimentacao;
+select * from movimentacao;
+select * from movimentacao_has_materiais;
+
+
+INSERT INTO `materiais` (`codigo_mat`, `tipo`, `descricao`, `observacao`) 
+VALUES (1, 'R', 'Resistor de 1k Ohm', 'Resistor de filme de carbono');
+
+-- Inserir material 2 (Capacitor)
+INSERT INTO `materiais` (`codigo_mat`, `tipo`, `descricao`, `observacao`) 
+VALUES (2, 'C', 'Capacitor de 100nF', 'Capacitor cerâmico');
+
+-- Inserir material 3 (Diodo)
+INSERT INTO `materiais` (`codigo_mat`, `tipo`, `descricao`, `observacao`) 
+VALUES (3, 'D', 'Diodo retificador 1N4007', 'Diodo de silício');
+
+-- Inserir material 4 (Transistor)
+INSERT INTO `materiais` (`codigo_mat`, `tipo`, `descricao`, `observacao`) 
+VALUES (4, 'T', 'Transistor NPN BC547', 'Transistor de uso geral');
+
+-- Inserir material 5 (LED)
+INSERT INTO `materiais` (`codigo_mat`, `tipo`, `descricao`, `observacao`) 
+VALUES (5, 'L', 'LED vermelho 5mm', 'LED de alto brilho');
+
+-- Inserir material 6 (Potenciômetro)
+INSERT INTO `materiais` (`codigo_mat`, `tipo`, `descricao`, `observacao`) 
+VALUES (6, 'P', 'Potenciômetro linear de 10k Ohm', 'Potenciômetro de precisão');
+
+-- Inserir material 7 (Indutor)
+INSERT INTO `materiais` (`codigo_mat`, `tipo`, `descricao`, `observacao`) 
+VALUES (7, 'I', 'Indutor de 100 µH', 'Indutor axial');
+
+-- Inserir material 8 (Cristal oscilador)
+INSERT INTO `materiais` (`codigo_mat`, `tipo`, `descricao`, `observacao`) 
+VALUES (8, 'X', 'Cristal oscilador 16 MHz', 'Cristal de quartzo');
+
+-- Inserir material 9 (Transformador)
+INSERT INTO `materiais` (`codigo_mat`, `tipo`, `descricao`, `observacao`) 
+VALUES (9, 'T', 'Transformador 12V/220V', 'Transformador toroidal');
+
+-- Inserir material 10 (Relé)
+INSERT INTO `materiais` (`codigo_mat`, `tipo`, `descricao`, `observacao`) 
+VALUES (10, 'R', 'Relé de 5V', 'Relé de uso geral');
+
+-- Inserir posição de estoque do material 1 (Resistor)
+c
+
+-- Inserir posição de estoque do material 3 (Diodo)
+INSERT INTO `posicao_estoque` (`quantidadeMinima`, `quantidadeAtual`, `quantidadeMaxima`, `materiais_codigo_mat`) 
+VALUES (20, 60, 100, 3);
+
+-- Inserir posição de estoque do material 4 (Transistor)
+INSERT INTO `posicao_estoque` (`quantidadeMinima`, `quantidadeAtual`, `quantidadeMaxima`, `materiais_codigo_mat`) 
+VALUES (40, 90, 180, 4);
+
+-- Inserir posição de estoque do material 5 (LED)
+INSERT INTO `posicao_estoque` (`quantidadeMinima`, `quantidadeAtual`, `quantidadeMaxima`, `materiais_codigo_mat`) 
+VALUES (50, 120, 250, 5);
+
+-- Inserir posição de estoque do material 6 (Potenciômetro)
+INSERT INTO `posicao_estoque` (`quantidadeMinima`, `quantidadeAtual`, `quantidadeMaxima`, `materiais_codigo_mat`) 
+VALUES (30, 70, 120, 6);
+
+-- Inserir posição de estoque do material 7 (Indutor)
+INSERT INTO `posicao_estoque` (`quantidadeMinima`, `quantidadeAtual`, `quantidadeMaxima`, `materiais_codigo_mat`) 
+VALUES (25, 50, 80, 7);
+
+-- Inserir posição de estoque do material 8 (Cristal oscilador)
+INSERT INTO `posicao_estoque` (`quantidadeMinima`, `quantidadeAtual`, `quantidadeMaxima`, `materiais_codigo_mat`) 
+VALUES (15, 40, 70, 8);
+
+-- Inserir posição de estoque do material 9 (Transformador)
+INSERT INTO `posicao_estoque` (`quantidadeMinima`, `quantidadeAtual`, `quantidadeMaxima`, `materiais_codigo_mat`) 
+VALUES (20, 60, 100, 9);
+
+-- Inserir posição de estoque do material 10 (Relé)
+INSERT INTO `posicao_estoque` (`quantidadeMinima`, `quantidadeAtual`, `quantidadeMaxima`, `materiais_codigo_mat`) 
+VALUES (35, 75, 130, 10);
+
+INSERT INTO `tipomovimentacao` (`idTipoMovimentacao`, `tipoEntrada`, `descricao`) 
+VALUES (1, 1, 'Empréstimo (-)');
+
+-- Inserir tipo de movimentação 2 (Devolução)
+INSERT INTO `tipomovimentacao` (`idTipoMovimentacao`, `tipoEntrada`, `descricao`) 
+VALUES (2, 2, 'Devolução (+)');
+
+-- Inserir tipo de movimentação 3 (Entrada permanente)
+INSERT INTO `tipomovimentacao` (`idTipoMovimentacao`, `tipoEntrada`, `descricao`) 
+VALUES (3, 3, 'Entrada (p+)');
+
+-- Inserir tipo de movimentação 4 (Saída permanente)
+INSERT INTO `tipomovimentacao` (`idTipoMovimentacao`, `tipoEntrada`, `descricao`) 
+VALUES (4, 4, 'Saída (p-)');
+
+
+
+SELECT p.nome AS Professor,
+       mov.data AS Data,
+       mov.hora AS Hora,
+       tm.descricao AS TipoMovimentacao,
+       m.codigo_mat,
+       m.descricao AS DescricaoMaterial,
+       mm.qtd AS Quantidade
+FROM professor p
+INNER JOIN movimentacao mov ON p.registro = mov.professor_registro
+INNER JOIN movimentacao_has_materiais mm ON mov.idMovimentacao = mm.movimentacao_idMovimentacao
+INNER JOIN materiais m ON mm.materiais_codigo_mat = m.codigo_mat
+INNER JOIN tipomovimentacao tm ON mov.tipoMovimentacao_idTipoMovimentacao = tm.idTipoMovimentacao
+WHERE tm.tipoEntrada = 1  -- Movimentação do tipo Empréstimo (-)
+AND NOT EXISTS (
+    SELECT 1
+    FROM movimentacao_has_materiais mm2
+    INNER JOIN movimentacao mov2 ON mm2.movimentacao_idMovimentacao = mov2.idMovimentacao
+    INNER JOIN tipomovimentacao tm2 ON mov2.tipoMovimentacao_idTipoMovimentacao = tm2.idTipoMovimentacao
+    WHERE mm.materiais_codigo_mat = mm2.materiais_codigo_mat
+    AND tm2.tipoEntrada = 2  -- Movimentação do tipo Devolução (+)
+);
+
+SELECT p.nome AS Professor,
+       mov.data AS Data,
+       mov.hora AS Hora,
+       tm.descricao AS TipoMovimentacao,
+       m.codigo_mat,
+       m.descricao AS DescricaoMaterial,
+       mm.qtd AS Quantidade
+FROM professor p
+INNER JOIN movimentacao mov ON p.registro = mov.professor_registro
+INNER JOIN movimentacao_has_materiais mm ON mov.idMovimentacao = mm.movimentacao_idMovimentacao
+INNER JOIN materiais m ON mm.materiais_codigo_mat = m.codigo_mat
+INNER JOIN tipomovimentacao tm ON mov.tipoMovimentacao_idTipoMovimentacao = tm.idTipoMovimentacao;
+
+SELECT p.nome AS Professor,
+       mov.data AS Data,
+       mov.hora AS Hora,
+       tm.descricao AS TipoMovimentacao,
+       m.codigo_mat AS CodigoMaterial,
+       m.descricao AS DescricaoMaterial,
+       SUM(mm.qtd) AS TotalQuantidade
+FROM professor p
+INNER JOIN movimentacao mov ON p.registro = mov.professor_registro
+INNER JOIN movimentacao_has_materiais mm ON mov.idMovimentacao = mm.movimentacao_idMovimentacao
+INNER JOIN materiais m ON mm.materiais_codigo_mat = m.codigo_mat
+INNER JOIN tipomovimentacao tm ON mov.tipoMovimentacao_idTipoMovimentacao = tm.idTipoMovimentacao
+GROUP BY TipoMovimentacao, CodigoMaterial;
+
+SELECT p.nome AS Professor,
+       mov.data AS Data,
+       mov.hora AS Hora,
+       tm.descricao AS TipoMovimentacao,
+       m.codigo_mat AS CodigoMaterial,
+       m.descricao AS DescricaoMaterial,
+       SUM(mm.qtd) AS TotalQuantidade
+FROM professor p
+INNER JOIN movimentacao mov ON p.registro = mov.professor_registro
+INNER JOIN movimentacao_has_materiais mm ON mov.idMovimentacao = mm.movimentacao_idMovimentacao
+INNER JOIN materiais m ON mm.materiais_codigo_mat = m.codigo_mat
+INNER JOIN tipomovimentacao tm ON mov.tipoMovimentacao_idTipoMovimentacao = tm.idTipoMovimentacao
+GROUP BY TipoMovimentacao, CodigoMaterial
+ORDER BY CodigoMaterial;
+ 
+USE `almoxarifado`;
+
+SELECT 
+    p.nome AS Professor,
+    mov.data AS Data,
+    mov.hora AS Hora,
+    'Permanente' AS TipoMovimentacao,
+    m.codigo_mat AS CodigoMaterial,
+    m.descricao AS DescricaoMaterial,
+    SUM(CASE WHEN tm.tipoEntrada IN (3, 4) THEN mm.qtd ELSE -mm.qtd END) AS SaldoPermanente
+FROM 
+    professor p
+    INNER JOIN movimentacao mov ON p.registro = mov.professor_registro
+    INNER JOIN movimentacao_has_materiais mm ON mov.idMovimentacao = mm.movimentacao_idMovimentacao
+    INNER JOIN materiais m ON mm.materiais_codigo_mat = m.codigo_mat
+    INNER JOIN tipomovimentacao tm ON mov.tipoMovimentacao_idTipoMovimentacao = tm.idTipoMovimentacao
+WHERE 
+    tm.tipoEntrada IN (3, 4)  -- Entrada e Saída permanentes
+GROUP BY 
+    Professor, Data, Hora, TipoMovimentacao, CodigoMaterial, DescricaoMaterial;
+
+
+
+SELECT 
+    p.nome AS Professor,
+    mov.data AS Data,
+    mov.hora AS Hora,
+    'Permanente' AS TipoMovimentacao,
+    m.codigo_mat AS CodigoMaterial,
+    m.descricao AS DescricaoMaterial,
+    SUM(CASE WHEN tm.tipoEntrada IN (3, 4) THEN mm.qtd ELSE -mm.qtd END) AS SaldoPermanente,
+    NULL AS SaldoEmprestado  -- Coluna para saldo emprestado, inicialmente nula
+FROM 
+    professor p
+    INNER JOIN movimentacao mov ON p.registro = mov.professor_registro
+    INNER JOIN movimentacao_has_materiais mm ON mov.idMovimentacao = mm.movimentacao_idMovimentacao
+    INNER JOIN materiais m ON mm.materiais_codigo_mat = m.codigo_mat
+    INNER JOIN tipomovimentacao tm ON mov.tipoMovimentacao_idTipoMovimentacao = tm.idTipoMovimentacao
+WHERE 
+    tm.tipoEntrada IN (3, 4)  -- Entrada e Saída permanentes
+GROUP BY 
+    Professor, Data, Hora, TipoMovimentacao, CodigoMaterial, DescricaoMaterial
+
+UNION ALL  -- União com os empréstimos
+
+-- Consulta para os empréstimos
+SELECT 
+    p.nome AS Professor,
+    mov.data AS Data,
+    mov.hora AS Hora,
+    'Empréstimo' AS TipoMovimentacao,
+    m.codigo_mat AS CodigoMaterial,
+    m.descricao AS DescricaoMaterial,
+    NULL AS SaldoPermanente,  -- Coluna para saldo permanente, inicialmente nula
+    SUM(mm.qtd) AS SaldoEmprestado  -- Coluna para saldo emprestado
+FROM 
+    professor p
+    INNER JOIN movimentacao mov ON p.registro = mov.professor_registro
+    INNER JOIN movimentacao_has_materiais mm ON mov.idMovimentacao = mm.movimentacao_idMovimentacao
+    INNER JOIN materiais m ON mm.materiais_codigo_mat = m.codigo_mat
+    INNER JOIN tipomovimentacao tm ON mov.tipoMovimentacao_idTipoMovimentacao = tm.idTipoMovimentacao
+WHERE 
+    tm.tipoEntrada = 1  -- Empréstimo
+GROUP BY 
+    Professor, Data, Hora, TipoMovimentacao, CodigoMaterial, DescricaoMaterial;
+
+-- SELECT codigo_mat as codigo, descricao, quantidadeAtual FROM materiais join posicao_estoque on materiais_codigo_mat = codigo_mat WHERE codigo_mat = 8 -- 
+
+
+-- Inserindo dados na tabela tipoMovimentacao
+INSERT INTO tipoMovimentacao (idTipoMovimentacao, tipoEntrada, descricao) VALUES 
+(1, 1, 'Entrada'),
+(2, 2, 'Saída'),
+(3, 3, 'Devolução'),
+(4, 4, 'Empréstimo');
+
+-- Inserindo dados na tabela professor
+INSERT INTO professor (registro, nome, telefone, tipoUsuario, senha, email) VALUES 
+(101, 'Carlos Silva', 11987654321, 'A', 'senha123', 'carlos@univap.br'),
+(102, 'Ana Paula Souza', 11976543210, 'P', 'senha456', 'ana@univap.br');
+
+-- Inserindo dados na tabela materiais (exemplos de componentes eletrônicos)
+INSERT INTO materiais (codigo_mat, tipo, numeroBp, descricao, observacao) VALUES 
+(1, 'C', 1234, 'Resistor 1kΩ', 'Pacote de 100 unidades'),
+(2, 'C', 5678, 'Capacitor 10uF', 'Tensão máxima 50V'),
+(3, 'C', 9101, 'Transistor NPN', 'Modelo BC548'),
+(4, 'C', 1122, 'Diodo 1N4007', 'Máximo 1A');
+
+-- Inserindo dados na tabela posicao_estoque (posição atual dos materiais no estoque)
+INSERT INTO posicao_estoque (quantidadeMinima, quantidadeAtual, quantidadeMaxima, materiais_codigo_mat) VALUES 
+(50, 200, 500, 1),  -- Resistor 1kΩ
+(20, 100, 200, 2),  -- Capacitor 10uF
+(10, 50, 100, 3),   -- Transistor NPN
+(5, 30, 50, 4);     -- Diodo 1N4007
+

@@ -1,0 +1,280 @@
+/* Estilos Globais */
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0175f0 0%, #0137ab 60%);
+  margin: 0;
+  padding: 0;
+}
+
+/* Container principal da página */
+.container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Cabeçalho da página */
+h1 {
+  color: #020b14;
+  margin-bottom: 20px;
+}
+
+/* Formulário */
+form {
+  width: 100%;
+  max-width: 500px;
+  display: grid;
+  grid-gap: 20px;
+  justify-items: start;
+}
+
+/* Labels dos campos do formulário */
+label {
+  display: block;
+  margin: 15px 0 7px 0;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Campos de texto, números, datas, horas, selects e textarea */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Campo de texto para observações */
+textarea {
+  height: 100px;
+  overflow-y: auto;
+  resize: none;
+}
+
+/* Contêiner dos botões */
+.button-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+/* Botões */
+button {
+  flex: 1;
+  background-color: #00488B;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 0 5px;
+  margin-top: 10px; 
+}
+
+button:hover {
+  background-color: #02458d;
+}
+
+/* Botão específico para Adicionar */
+#btnAdd {
+  margin-top: 8px; 
+}
+
+/* Contêiner da data e hora */
+.date-time-wrapper {
+  display: flex;
+  gap: 20px; 
+  width: 100%; 
+  margin-bottom: 15px; 
+}
+
+/* Inputs */
+.input-wrapper {
+  flex: 1 1 30%; 
+  display: flex;
+  flex-direction: column;
+}
+
+.input-wrapper input {
+  height: 40px;
+}
+
+/* Estilo da área de pesquisa */
+.material-wrapper {
+  display: flex; 
+  gap: 20px; 
+  align-items: flex-start; 
+  width: 100%; 
+}
+
+.combobox-wrapper {
+  flex: 1; 
+}
+
+.search-wrapper {
+  flex: 3; 
+}
+
+/* Campo de quantidade */
+.quantidade-wrapper {
+  flex: 1;
+}
+
+/* Inputs e selects na área de materiais */
+.material-wrapper select,
+.material-wrapper input {
+  width: 100%; 
+}
+
+/* Tabela de resultados, estilo, células e cabeçalhos */
+.table-wrapper {
+  display: none;
+  width: 100%; 
+  margin-top: 8px;
+  overflow-x: auto; 
+}
+
+table {
+  width: 100%; 
+  border-collapse: collapse; 
+}
+
+table th, table td {
+  padding: 12px; 
+  text-align: left; 
+  border-bottom: 1px solid #ddd; 
+  cursor: pointer; 
+}
+
+table th {
+  background-color: #00488B; 
+  color: white; 
+}
+
+/* Cor de fundo para linhas pares da tabela */
+table tr:nth-child(even) {
+  background-color: #f9f9f9; 
+}
+
+/* Cor de fundo ao passar o mouse sobre as linhas */
+table tr:hover {
+  background-color: #f1f1f1; 
+}
+
+stable tr.selected {
+  background-color: #cce7ff; 
+}
+
+table td {
+  color: #000000; 
+}
+
+/* Notificações */
+.notification {
+  display: none;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #4caf50;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  opacity: 0; 
+  transition: opacity 0.5s ease, display 0s 0.5s; 
+}
+
+/* Estilo para notificações de erro */
+.notification.error {
+  background-color: #f44336;
+}
+
+/* Exibição da notificação */
+.notification.show {
+  display: block;
+  opacity: 1;
+  transition: opacity 0.5s ease; 
+}
+
+/* Ajustes para telas menores */
+@media screen and (max-width: 600px) {
+  .container {
+    max-width: 100%;
+    margin: 10px;
+    border-radius: 0;
+    padding: 10px;
+  }
+
+  form {
+    grid-gap: 15px;
+  }
+
+  .date-time-wrapper {
+    flex-direction: column;
+  }
+
+  .input-wrapper {
+    flex: 1 1 100%;
+  }
+
+  .material-wrapper {
+    flex-direction: column;
+  }
+
+  .button-wrapper {
+    flex-direction: column;
+  }
+
+  button {
+    margin: 5px 0;
+  }
+
+  .material-wrapper select,
+  .material-wrapper input {
+    width: 100%; 
+  }
+}
+
+/* Label grande para "Materiais" */
+.label-large {
+  font-size: 1.5rem; 
+  font-weight: bold; 
+}
+
+/* Largura da tabela para rolagem horizontal */
+.table-wrapper {
+  overflow-x: scroll; 
+}
+
+/* Fonte e padding nas células da tabela */
+table th, table td {
+  font-size: 14px; 
+  padding: 10px; 
+}
+
+/* Ajuste para alinhar botões lado a lado */
+.button-wrapper-inline {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.button-wrapper-inline button {
+  flex: 1;
+  margin: 0 5px;
+}

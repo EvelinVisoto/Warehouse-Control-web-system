@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário de Movimentação</title>
+  <link rel="icon" href="icone-u.png" type="image/x-icon">
+  <link rel="stylesheet" href="stylesPainel.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Movimentação</h1>
+ 
+    <div class="date-time-wrapper">
+      <div class="input-wrapper">
+        <label for="numero-movimentacao">Movimentação:</label>
+        <input type="text" id="numero-movimentacao" name="numero-movimentacao" readonly>
+      </div>
+      <div class="input-wrapper">
+        <label for="data">Data:</label>
+        <input type="date" id="data" name="data">
+      </div>
+      <div class="input-wrapper">
+        <label for="hora">Hora:</label>
+        <input type="time" id="hora" name="hora">
+      </div>
+    </div>
+
+    <label for="cboProfessor">Professor:</label>
+    <select id="cboProfessor" name="cboProfessor">
+    </select>
+
+    <label for="observacao">Observação:</label>
+    <textarea id="observacao" name="observacao" rows="4"></textarea>
+
+    <label for="tipo-movimentacao">Tipo de Movimentação:</label>
+    <select id="tipo-movimentacao" name="tipo-movimentacao">
+    </select>
+
+    <label class="label-large">Materiais</label>
+    <div class="material-wrapper">
+      <div class="combobox-wrapper">
+        <label for="material">Pesquisar por:</label>
+        <select id="material" name="material">
+          <option value="1">Código</option>
+          <option value="2">Tipo</option>
+          <option value="3">BP</option>
+          <option value="4">Descrição</option>
+          <option value="5">Observação</option>
+        </select>
+      </div>
+
+      <div class="search-wrapper">
+        <label for="material-search">Pesquise</label>
+        <input type="text" id="material-search" name="material-search" placeholder="Digite aqui..." onkeyup="pesquisarMaterial(event)" >
+      </div>
+    </div>
+
+    <label for="cbomaterial"></label>
+    <select id="cbomaterial" name="cbomaterial">
+    </select>
+
+    <label for="quantidade">Quantidade:</label>
+    <input type="number" id="quantidade" name="quantidade" min="1">
+
+    <button id="btnAdd" onclick="btnAdd()">Adicionar</button>
+
+    <ul id="listaMovimentacoes"></ul>
+    <div class="table-wrapper">
+      <table id="resultados" border="1">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Descrição</th>
+            <th>Quantidade</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+    
+    <input type="hidden" id="item-selecionado" name="item-selecionado">
+
+    <button id="btnEnviar" onclick="cadastrar()">Gravar</button>
+
+    <div id="notification" class="notification"></div>
+  </div>
+  
+  <script src="painel.js"></script>
+</body>
+</html>
