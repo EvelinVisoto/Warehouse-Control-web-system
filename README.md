@@ -1,28 +1,26 @@
-# Sistema de Gestão de Almoxarifado
+# Warehouse Control WEB System  
 
-### Descrição
+### Description  
 
-O Sistema de Gestão de Almoxarifado foi desenvolvido para otimizar o controle de materiais no almoxarifado do colégio, permitindo que funcionários autorizados realizem registros de entrada e saída de itens de forma eficiente. O sistema visa melhorar a organização, reduzir perdas e fornecer relatórios precisos sobre os estoques.
+The Warehouse Management System was developed to optimize material control in the school's warehouse, allowing authorized staff to efficiently record item entries and exits. The system aims to improve organization, reduce losses, and provide accurate inventory reports.  
 
-### Funcionalidades
+### Features  
 
-- Registro de entradas e saídas de materiais;
-- Controle de estoque atualizado;
-- Controle de acesso para garantir segurança nas movimentações;
-- Geração de relatórios detalhados sobre movimentação de materiais;
-- Interface intuitiva para facilidade de uso;
+- Recording of material entries and exits;  
+- Updated inventory control;  
+- Access control to ensure security in transactions;  
+- Generation of detailed reports on material movement;  
+- Intuitive interface for ease of use.  
 
-### Tecnologias Utilizadas
+### Technologies Used  
 
-- **Frontend:** HTML, CSS e JavaScript
-- **Backend:** Node.js e JavaScript
-- **Banco de Dados:** MySQL (hospedado na Azure)
-- **Autenticação:** JSON Web Token (JWT)
-- **Arquitetura:** API RESTful e MVC (Model-View-Controller)
+- **Frontend:** HTML, CSS, and JavaScript  
+- **Backend:** Node.js and JavaScript  
+- **Database:** MySQL (hosted on Azure)  
+- **Authentication:** JSON Web Token (JWT)  
+- **Architecture:** RESTful API and MVC (Model-View-Controller)  
 
-## Autor
+## Author  
 
-Desenvolvido por **Evelin Visoto & Isabelly Pacheco** - 2024  
-📌 **Repositório no GitHub:** [https://github.com/EvelinVisoto/gestao-almoxarifado](https://github.com/EvelinVisoto/gestao-almoxarifado)
-
-
+Developed by **Evelin Visoto & Isabelly Pacheco** - 2024  
+📌 **GitHub Repository:** [https://github.com/EvelinVisoto/gestao-almoxarifado](https://github.com/EvelinVisoto/Warehouse-Control-web-system)
