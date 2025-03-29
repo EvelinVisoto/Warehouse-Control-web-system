@@ -2,7 +2,7 @@
 
 ### Description  
 
-The Warehouse Management System was developed to optimize material control in the school's warehouse, allowing authorized staff to efficiently record item entries and exits. The system aims to improve organization, reduce losses, and provide accurate inventory reports.  
+The Warehouse Management WEB System was developed to optimize material control in the school's warehouse, allowing authorized staff to efficiently record item entries and exits. The system aims to improve organization, reduce losses, and provide accurate inventory reports.  
 
 ### Features  
 
